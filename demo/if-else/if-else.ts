@@ -9,3 +9,36 @@ import { strict as assert } from "assert";
 //
 // Useful links:
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else
+
+const answer = 2 + 2;
+assert.equal(answer,4);
+
+if (answer > 4) {
+    console.log(">4");
+} 
+
+if (answer === 4) {
+    console.log("4");
+}
+else {
+    console.log("!4");
+}
+
+if (answer < 4) {
+    console.log("<4");
+} else if (answer > 4) {
+    console.log("<4");
+} else {
+    console.log("4");
+}
+
+const age = 6;
+const likesHavingFun = true;
+
+if (age <= 12  && likesHavingFun){
+  console.log("try going to the park.");
+} else if (likesHavingFun){
+    // still have fun
+} else {
+    // be  bored
+}
