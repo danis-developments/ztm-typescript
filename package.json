@@ -38,5 +38,7 @@
   "engines": {
     "node": ">=18.9.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "fs": "^0.0.1-security"
+  }
 }
