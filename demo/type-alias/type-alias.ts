@@ -9,3 +9,22 @@ import { strict as assert } from "assert";
 //
 // Useful links:
 // https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-aliases
+
+// I create a new name for string type. Typescript views this as a string. It just allows me to give a new name to the type
+type PersonName = string;
+
+const myName: PersonName = "Dani";
+const alsoMyName: string = "Dani";
+
+// bad
+function print(thing: string) {
+    console.log(`Name is ${thing}`);
+}
+
+// good
+function printName(name: PersonName) {
+    console.log(`Name is ${name}`);
+}
+
+print("a house");
+printName(myName);
