@@ -42,3 +42,51 @@ if (age <= 12  && likesHavingFun){
 } else {
     // be  bored
 }
+
+const hasTheSkills = true;
+const day = "Tuesday";
+const hoursWorked = 9;
+const totalOvertime = 0.5;
+const holidaySeason = false;
+
+function approveWork() {
+    if (
+        (hasTheSkills && (isTuesday || (hoursWorked > 8 && totalOvertime < 1))) || holidaySeason
+
+    ) {
+        // approve work
+    } else {
+        // go home
+    }
+}
+
+function approveOvertimeWork() {
+    if (!hasTheSkills) {
+        // go home
+        return;
+    }
+
+    if (!hasOvertimeHours(hoursWorked, totalOvertime)){
+        // go home
+        return;
+    }
+
+    if (!isBusyDay(day, holidaySeason)) {
+        // go home
+    }
+
+    // monthly max
+
+    // no late employees
+
+    // approve work
+}
+
+function hasOvertimeHours (hoursWorked: number, totalOvertime: number): boolean {
+    const hasHours = hoursWorked > 8 && totalOvertime < 1;
+    return hasHours;
+}
+
+function isBusyDay (day: string, holidaySeason: boolean): boolean {
+    return holidaySeason || day === "Tuesday";
+}
