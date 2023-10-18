@@ -51,7 +51,7 @@ const holidaySeason = false;
 
 function approveWork() {
     if (
-        (hasTheSkills && (isTuesday || (hoursWorked > 8 && totalOvertime < 1))) || holidaySeason
+        (hasTheSkills && (day==="Tuesday" || (hoursWorked > 8 && totalOvertime < 1))) || holidaySeason
 
     ) {
         // approve work
