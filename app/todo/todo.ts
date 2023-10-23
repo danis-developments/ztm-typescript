@@ -18,10 +18,14 @@ function getTodos(): Todo[] {
 
 function listTodos(): void {
     const todos: Todo[] = getTodos();
-    for (let i = 0; i < todosPath.length; i++){
+    console.log("=============");
+    console.log("| Todo List |");
+    console.log("+-----------+");
+    console.log("| id: task  |");
+    console.log("=============");
+    for (let i = 0; i < todos.length; i++){
         console.log(`${todos[i].id}: ${todos[i].task}`);
     }
-
 }
 
 function saveTodos(todos: Todo[]): void {
@@ -34,7 +38,8 @@ function removeTodo(id: number): void {
         return todo.id === id;
     });
     if (index === -1) {
-        console.log(`Colud not find todo with id ${id}`);
+        console.log(`Could not find todo with id ${id}`);
+        listTodos();
         return;
     }
 
@@ -51,4 +56,65 @@ function addTodo(task: string): void {
     console.log(`Added todo ${id}: ${task}`);
 }
 
-function cli(): void {}
+function cliInvalidNumOptionsMsg(subcommand: string, expected: number, numOptions: number): void {
+    console.log(`Invalid number of options for subcommand '${subcommand}', expected ${expected}, got ${numOptions}`);
+}
+
+function cliHelpMsg(): void {
+    console.log("todo add TASK      add todo");
+    console.log("todo done ID       complete a todo");
+    console.log("todo list          list todo");
+    console.log("todo --help        show this list of commands");
+}
+
+function cliNoCommandMsg(): void{
+    console.log(`no command passed to todo.ts. Please enter a command:\n`);
+    cliHelpMsg();
+}
+
+function cli(): void {
+    const subcommand = process.argv[2]
+    const options = process.argv.slice(3);
+    // console.log(process.argv);
+
+    if (subcommand === undefined) {
+        cliNoCommandMsg();
+        return;
+    }
+
+    switch (subcommand) {
+        case "--help":
+            cliHelpMsg();
+            break;
+        case "done":
+            if (options.length !== 1){
+                cliInvalidNumOptionsMsg(subcommand, 1, options.length);
+                break;
+            }
+            const id = parseInt(options[0]);
+            if(isNaN(id)){
+                console.log(`Option must be a task id number for subcommand 'done', '${options[0]}' is not a number`);
+            }
+            removeTodo(id);
+            break;
+        case "add":
+            if (options.length !== 1) {
+                cliInvalidNumOptionsMsg(subcommand, 1, options.length);
+                break;
+            } 
+            addTodo(options[0]);
+            break;
+        case "list":
+            if (options.length !== 0) {
+                cliInvalidNumOptionsMsg(subcommand, 0, options.length);
+                break;
+            } 
+            listTodos();
+            break;
+        default:
+            console.log(`unknown subcommand '${subcommand}'`);
+            cliHelpMsg();
+    }
+}
+
+cli();
