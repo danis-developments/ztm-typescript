@@ -9,3 +9,42 @@
 //
 // Useful links:
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch
+
+function divide (lhs: number, rhs: number): number {
+    if (rhs === 0) {
+        throw new Error ("cannot divide by zero");
+    }
+    return lhs / rhs;
+}
+
+const a = divide(10,2);
+console.log(a);
+
+try {
+    const b = divide (10,3);
+    console.log(b);
+    
+} catch (e) {
+    console.error(`${e}`);
+} finally {
+    console.log("divided some numbers.");
+}
+
+function div (lhs: number, rhs: number): number {
+    try {
+        return divide (lhs, rhs);
+    } catch (e) {
+        console.log("this function is broken");
+        throw e
+    }
+}
+
+try {
+    const b = div(10,0);
+    console.log(b);
+    
+} catch (e) {
+    // console.error(`${e}`);
+} finally {
+    // console.log("divided some numbers.");
+}
