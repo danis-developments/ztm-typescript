@@ -1,5 +1,6 @@
 /* eslint-disable */
 import { strict as assert } from "assert";
+import { getEnabledCategories } from "trace_events";
 
 // Type assertions allow you to tell the compiler that a value should be
 // considered a certain type, even if TypeScript cannot infer the type
@@ -10,3 +11,33 @@ import { strict as assert } from "assert";
 //
 // Useful links:
 // https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-assertions
+
+const greeting: unknown = "hello";
+const greet = greeting as string;
+
+//wrong!
+// const greet = greeting as number
+// greet += 2
+// consale.log(greet);
+
+
+const numChars = (greeting as string).length;
+
+interface Employee {
+    position(): string;
+}
+
+class Manager implements Employee {
+    position(): string {
+        return "Manager";
+    }
+
+    sayHello(): void {
+        console.log("hi");
+    }
+}
+
+// type assertion can restrict this class to only use the Employee interface
+const alice: Employee = new Manager();
+
+
