@@ -9,3 +9,16 @@
 
 import { strict as assert } from "assert";
 
+function getFirstName(): string {
+    return "Dani";
+}
+
+function getLastName(): string {
+    return "Martz";
+}
+
+function getFullname(): string {
+    return getFirstName() + " " + getLastName();
+}
+
+console.log(getFullname());
