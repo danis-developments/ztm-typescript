@@ -1,9 +1,10 @@
 const GEOCODE_API_URL = "https://geocode.maps.co/search"
 const WEATHER_API_URL = "https://api.open-meteo.com/v1/forecast"
 
+import axios from "axios";
 import { fetchLocationData } from "./location";
 import type { LocationInfo } from "./location";
-
+import { CurrentWeather } from "./weatherapi";
 
 
 async function main(): Promise<number> {
