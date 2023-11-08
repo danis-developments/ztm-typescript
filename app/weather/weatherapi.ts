@@ -96,7 +96,7 @@ export class CurrentWeather {
     const formatted: string[] = [];
     formatted.push(`${temp}: ${formatTemperature(this.temperature)}`);
     formatted.push(`${windSpeed}: ${formatWind(this.wind)}`);
-    formatted.push(`${condition}: ${this.condition}`);
+    formatted.push(`${condition}: ${this.condition()}`);
 
     return formatted.join("\n");
   }
