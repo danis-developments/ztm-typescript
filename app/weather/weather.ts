@@ -4,7 +4,7 @@ const WEATHER_API_URL = "https://api.open-meteo.com/v1/forecast"
 import axios from "axios";
 import { fetchLocationData } from "./location";
 import type { LocationInfo } from "./location";
-import { CurrentWeather } from "./weatherapi";
+import { CurrentWeather, fetchWeatherData } from "./weatherapi";
 
 
 async function main(): Promise<number> {
@@ -25,8 +25,19 @@ async function main(): Promise<number> {
         return 1;
     }
 
-    console.log(locationInfo);
     //fetch weather data
+    console.log(`Fetching weather data for ${locationInfo.display_name}...\n`);
+    try {
+        const weather = await fetchWeatherData(
+            WEATHER_API_URL,
+            locationInfo.lat,
+            locationInfo.lon,
+        );
+        console.log(weather.format());
+    } catch (err) {
+        console.error(err);
+        return 1;
+    }
     // display weather data
  
  
